@@ -4,12 +4,12 @@
 
 ### <a name="poly">Polymorphism
   
-  * Explain polymorphism in C++?
+  1. Explain polymorphism in C++?
     - it describes the concept that you can access objects of different types through the same interface
-  * What is the difference between static and dynamic polymorphism?
+  2. What is the difference between static and dynamic polymorphism?
     - Static binding/Compile-Time binding/Early binding/Method overloading.(in same class)
     - Dynamic binding/Run-Time binding/Late binding/Method overriding.(in different classes)
-  * What is function overriding? How it works?
+  3. What is function overriding? How it works?
     - redefinition of the base class function in its derived class with the same signature i.e. return type and parameters.
     - Function has to be defined as virtual in base class
     - override keyword(not strict) Tells the compiler: "make sure there is an EXACT virtual function I am overriding"
@@ -25,7 +25,7 @@
         virtual void zoo() override; // Compiler error. Zoo was const
       }
       ```
-  * What is the 'final' keyword?
+  4. What is the 'final' keyword?
     - It forbids next level inheritance when used in class signature.
       ```c++
         class B: final A{};  // No one can derive class B
@@ -41,7 +41,7 @@
           virtual void foo() override; // Compiler error. foo func. is guarded
         }
       ```
-  * How much is the size of empty class?
+  5. How much is the size of empty class?
     ```c++
     class A{};
     sizeof(A); // ?
@@ -63,4 +63,12 @@
       class D{
         uint16_t d;
       }; // sizeof(d) is 2 bytes
+      ```
+  6. What is abstract class and how we use them in C++?
+    - If you're familiar with java/c++ you know interfaces. They are same. Abstract class is a class type that you can't instansiate it. In order to make a class abstract, you need at least 1 pure virtual function. Which means zeroed function.
+      ```c++
+      class Abs{
+        virtual void foo() = 0;
+      };
+      Abs abs; // compiler error
       ```
