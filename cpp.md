@@ -75,3 +75,4 @@
        };
        Abs abs; // compiler error
        ```
+     - You can derive abstract functions. If you don't override pure virtual function, derived class is also abstract.
