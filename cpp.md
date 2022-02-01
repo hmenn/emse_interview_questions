@@ -46,7 +46,7 @@
     class A{};
     sizeof(A); // ?
     ```
-    - It's not zero. Each class has a internal/secret unique identifier that helps to check equality. For example these classes has no variable however they are not equal;
+    - It's not zero. Each class has a internal/secret unique identifier that used for unique address identification and equality checking. For example these classes has no variable however they are not equal and minumum 1 byte is allocated on memory to store them.
       ```c++
       class A{};
       class B{};
