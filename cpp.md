@@ -41,3 +41,26 @@
           virtual void foo() override; // Compiler error. foo func. is guarded
         }
       ```
+  * How much is the size of empty class?
+    ```c++
+    class A{};
+    sizeof(A); // ?
+    ```
+    - It's not zero. Each class has a internal/secret unique identifier that helps to check equality. For example these classes has no variable however they are not equal;
+      ```c++
+      class A{};
+      class B{};
+      A a; // sizeof(A) is 1
+      B b; // sizeof(B) is 1
+      a == b; // it's false
+      ```
+    - If we define a variable, we lose unique variable
+      ```c++
+      class C{
+        uint8_t c;
+      }; // sizeof(C) is still 1 byte. Unique identifier discarded because of internal member
+  
+      class D{
+        uint16_t d;
+      }; // sizeof(d) is 2 bytes
+      ```
