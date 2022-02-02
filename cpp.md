@@ -1,6 +1,7 @@
 # C++ Questions
 
-1.[Polymorphism](#poly)
+1. [Polymorphism](#poly)
+2. [Smart Pointers](#smartptr)
 
 ### <a name="poly">Polymorphism
 
@@ -77,3 +78,23 @@
         ```
       - You can derive abstract functions. If you don't override pure virtual function, derived class is also abstract.
       - Concrete class = instansiatable class
+
+### <a name="smartptr">Smart Pointers
+  1. What is the RAII(Resource Acquisition Is Initialization)?
+      - *Resource Acquitision*: Open file, allocate memory, acquire a lock
+      - *Is Initialization*: resource acquired in constructer
+      - Resource relinquishing: Close file, deallocate memory, release a lockAcquired in the destructor.
+      - For example smartpointers help for resource lifecycle.
+        ```c++
+        {
+          #include <memory>
+          ...
+          std::unique_ptr<int> b = std::unique_ptr<int>(new int{3});// c++11
+          std::unique_ptr<int> a = std::make_unique<int>(3); // c++14
+          std::shared_ptr<int> c = std::make_shared<int>(4); // c++11
+          std::cout<<*a<<std::endl;
+          *b = 2;
+          *c = 11;
+          // no delete required when scope end
+        }
+        ```
