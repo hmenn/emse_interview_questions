@@ -2,6 +2,8 @@
 
 1. [Polymorphism](#poly)
 2. [Smart Pointers](#smartptr)
+3. [Exception Handling](#exceptions)
+4. [Lambda Expressions](#lambda)
 
 ### <a name="poly">Polymorphism
 
@@ -98,3 +100,50 @@
           // no delete required when scope end
         }
         ```
+
+### <a name="exceptions">Exception Handling
+
+1. TBA
+
+### <a name="lambda">Lambda Expressions
+
+1. What is the functor?
+    - Functor is a class/struct/object that you implement `operator()`, which means it's callable object.
+    - Sample:
+      ```c++
+      struct ACall{
+        int operator(){
+          return 3;
+        }
+
+        int operator(int x){
+          return x+3;
+        }
+      };
+
+      ACall a;
+      a();
+      a(5);
+      ```
+    - You can pass functors to STL functions. They might have members and that's their difference from functions.
+
+2. What is the lambda?
+    - It's a different/easy syntax to create functors.
+    - Sample:
+      ```c++
+      //[](){};
+      //|  | \--> Function body
+      //|  \----> Function arguments
+      //\-------> Capture area
+
+      [](){ std::cout<<"I'm a lambda"};
+      [](int x){std::cout<<"I'm also a lambda and I take argument:"<<x};
+      [](){ return "I can return anything"};
+
+
+      int a;
+      [a](){return "I can capture variable from outside"; }; // stateful lamda
+      ```
+
+    - Stateles Lambda: Don't capture anything
+    - Stateful: Captures data from outside
