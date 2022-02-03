@@ -142,8 +142,40 @@
 
 
       int a;
-      [a](){return "I can capture variable from outside"; }; // stateful lamda
+      string b;
+      [a, &b](){ b="Hello"; a=3; return "I can capture variable from outside and use it"; }; // stateful lamda
       ```
 
     - Stateles Lambda: Don't capture anything
     - Stateful: Captures data from outside
+
+3. How lambda captures values?
+    - Captures variables by value or by referencens.
+      ```c++
+      int x{100};
+      /*
+      [x](){
+        x+=100; // Compile error. It's read-only since handled by value. Not mutable.
+      }();
+      */
+
+      [x]() mutable{
+        x+=200; // It only changes value of local X.
+        std::cout<<x; // print 200
+      };
+      std::cout<<x; // print 100
+
+
+      int y=20;
+      [x, &y](){}; // capture x by value, y by reference
+      ```
+    - Default captures:
+      ```c++
+      [=]     // Default capture by value
+      [&]     // Default capture by reference
+      [this]  // Default capture this object by reference
+
+      [=, &x]     // Default capture by value but capture x by reference
+      [&, y]      // Default capture by reference but capture y by value
+      [this, z]   // Default capture this object by reference but capture z by value
+      ```
