@@ -4,6 +4,7 @@
 2. [Smart Pointers](#smartptr)
 3. [Exception Handling](#exceptions)
 4. [Lambda Expressions](#lambda)
+5. [Enumerations](#enums)
 
 ### <a name="poly">Polymorphism
 
@@ -178,4 +179,36 @@
       [=, &x]     // Default capture by value but capture x by reference
       [&, y]      // Default capture by reference but capture y by value
       [this, z]   // Default capture this object by reference but capture z by value
+      ```
+
+
+### <a name="enums">Enumerations
+
+1. Describe unscoped and scoped enums?
+    - Unscoped
+      ```c++
+      /*
+      enum-key enum-name: enumerator-type {};
+         |
+         \----> Enum Key, defines the scope of the enumeration
+      */
+
+      // Unscoped
+      enum State {OK=1, NOK=2};
+
+      int x=1; // or std::underlying_type_t<State> x =  std::underlying_type_t<State>(OK);
+      if(x == OK){/**/} //Unscoped
+
+      ```
+    - Scoped
+      ```c++
+      enum class State2 {OK, NOK};
+      // can not compare state2 with integer without casting
+      if(x == static_cast<int>(State2::OK)){}
+      // You need to compare enum class with enum class and enum-name as scope identifier
+
+      State2 s1=State2::OK;
+      State2 s2=State2::NOK;
+
+      if(s1 == s2){}
       ```
