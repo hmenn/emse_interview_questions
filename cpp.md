@@ -19,6 +19,25 @@
       foo(my_arg);
       ```
 
+  2. What is the iterator invalidation?
+      - It's like pointer invalidations which means that your iterator points and invalid location.
+      - When you made insert/delete operations on an contaier while iterating, your iterator might be invalidated.
+      - Sample:
+          ```c++
+          // Creating a sample vector
+          vector<int> v = { 1, 5, 10, 15, 20 };
+
+          // Changing vector while iterating over it
+          // (This causes iterator invalidation)
+          for (auto it = v.begin(); it != v.end(); it++)
+              if ((*it) == 5)
+                  v.push_back(-1);
+
+          for (auto it = v.begin(); it != v.end(); it++)
+              cout << (*it) << " ";
+          // 1 5 10 15 20 -1 -1
+          ```
+
 ### <a name="poly">Polymorphism
 
   1. Explain polymorphism in C++?
