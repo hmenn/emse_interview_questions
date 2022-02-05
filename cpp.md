@@ -5,7 +5,7 @@
 2. [Smart Pointers](#smartptr)
 3. [Exception Handling](#exceptions)
 4. [Lambda Expressions](#lambda)
-5. [Enumerations](#enums)
+5. [Enumerations && Structs](#enums-structs)
 
 
 ### <a name="notopic">Topicless
@@ -20,8 +20,8 @@
       ```
 
   2. What is the iterator invalidation?
-      - It's like pointer invalidations which means that your iterator points and invalid location.
-      - When you made insert/delete operations on an contaier while iterating, your iterator might be invalidated.
+      - It's like pointer invalidations which means that your iterator points an invalid location.
+      - When you do insert/delete operations on an contaier while iterating, your iterator might be invalidated.
       - Sample:
           ```c++
           // Creating a sample vector
@@ -214,7 +214,7 @@
       ```
 
 
-### <a name="enums">Enumerations
+### <a name="enums-structs">Enumerations && Structs
 
 1. Describe unscoped and scoped enums?
     - Unscoped
@@ -243,4 +243,32 @@
       State2 s2=State2::NOK;
 
       if(s1 == s2){}
+      ```
+
+2. Please describe bitwise/bitfield operation and how/why we use it?
+    - It helps us to do quick operations on bits of a data type.
+    - We take advantage of unions here.
+    - Sample:
+      ```c++
+      union My_Union
+      {
+          struct fields
+          {
+              // LSB
+              uint16_t BIT_1_3   :3;
+              uint16_t BIT_4     :1;
+              uint16_t BIT_5     :1;
+              uint16_t BIT_6  :1;
+              uint16_t BIT_7_16   :10;
+              // MSB
+          };
+
+          uint16_t WHOLE_DATA;
+      };
+
+      My_Union mu;
+      mu.WHOLE_DATA = 0xffff; // 1111 1111 1111 1111
+
+      // assume we want to toggle bit 5
+      mu.BIT_5=0; // and now data is 0xffef:  1111 1111 1110 1111
       ```
