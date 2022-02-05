@@ -1,10 +1,23 @@
 # C++ Questions
 
+0. [Topicless](#notopic)
 1. [Polymorphism](#poly)
 2. [Smart Pointers](#smartptr)
 3. [Exception Handling](#exceptions)
 4. [Lambda Expressions](#lambda)
 5. [Enumerations](#enums)
+
+
+### <a name="notopic">Topicless
+
+  1. What is the difference between an argument and a parameter?
+      ```c++
+      void foo(iny my_param){}
+      ...
+      ...
+      int my_arg =3;
+      foo(my_arg);
+      ```
 
 ### <a name="poly">Polymorphism
 
