@@ -38,6 +38,24 @@
           // 1 5 10 15 20 -1 -1
           ```
 
+  3. What are the pure functions(Mathematical functions)?
+      - Produce same result when given the same arguments
+      - Have no side effect
+      - Don't change state of the program
+      - Easy to test, automatically parallelizable, result can be reached
+
+  4. Explain `constexpr` and give some example?
+      - It's a special keyboard to determine what will be run on compile time.
+      - If it's not possible to run constexpr function on compile time, it'll be run on runtime.
+        - For example, If you call this function with const or constexpr data, it'll be calculated on compile.
+          If you take data from user or give result of another function(not constexpr), will be done on runtime.
+          ```c++
+          constexpr void foo(int a, int b){
+            return a+b;
+          }
+          ```
+      - Should be a pure function, should not use any `static` and  `thread_local` variable
+
 ### <a name="poly">Polymorphism
 
   1. Explain polymorphism in C++?

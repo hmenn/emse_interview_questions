@@ -31,3 +31,23 @@
       - The constructor call is expensive: we only do it once
       - Want to prevent anyone creating additional copies
       - Need to take care of lazy instantiation and thread safety
+      - Sample:
+        ```c++
+        class Singleton{
+            public:
+                Singleton& getInstance(){
+                    static Singleton instance;
+                    return instance;
+                }
+            private:
+                Singleton(){}
+                Singleton(const Singleton& obj) = delete;
+                Singleton& operator=(const Singleton& obj) = delete;
+        };
+        ```
+    - *Adapter*: Getting the interface you want from the interface you have
+      - A contruct which adapts an existing interface X to conform to the required interface Y
+      - Electrical device has different power(interface) requirements
+    - *Bridge*: A mechanism that decouples an interface(hierarchy) from an implementation(hierarchy)
+      - pimp(pointer implementation): Hide implementation details
+    -
